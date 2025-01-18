@@ -1,0 +1,51 @@
+# If you want to Generate 600 feedback comments in the format of (eg. student feedback to the teacher)
+
+import random
+
+positive_feedback_teacher = [
+    "The course content was comprehensive and well-structured.",
+    "Assignments were relevant and helped in understanding the subject better.",
+    "Group discussions were engaging and facilitated deeper learning.",
+    "Supplementary materials provided were very helpful.",
+    "Exams were fair and covered the material taught.",
+    "Overall, the course met my expectations and I learned a lot.",
+    "The instructor was knowledgeable and explained concepts clearly.",
+    "The pace of the course was appropriate and allowed me to follow along easily.",
+    "The teaching methods were interactive and kept me engaged throughout.",
+    "The instructor was approachable and willing to clarify doubts."
+]
+
+negative_feedback_teacher = [
+    "The instructor was often unprepared and lectures were disorganized.",
+    "Feedback on assignments was delayed and lacked constructive comments.",
+    "The online platform was frequently down, causing interruptions.",
+    "Some topics were rushed and not explained thoroughly.",
+    "The course lacked practical examples, making it harder to understand concepts.",
+    "The instructor was not very approachable and seemed dismissive of questions.",
+    "The lectures were monotonous and failed to capture my interest.",
+    "The assignments were too difficult and not aligned with the material taught.",
+    "The grading system was unclear and felt unfair.",
+    "There were frequent changes to the schedule, causing confusion."
+]
+
+# Combine and generate feedback
+feedback_list_teacher = []
+for _ in range(600):
+    if random.choice([True, False]):  # Randomly select positive or negative feedback
+        feedback = random.choice(positive_feedback_teacher)
+        feedback_list_teacher.append((feedback, 1))
+    else:
+        feedback = random.choice(negative_feedback_teacher)
+        feedback_list_teacher.append((feedback, 0))
+
+# Prepare the output in the required format
+feedback_output_teacher = "reviewText,Positive\n" + "\n".join(
+    [f'"{fb}",{label}' for fb, label in feedback_list_teacher]
+)
+
+# Save the generated feedback to a file for user
+file_path_teacher = "/mnt/data/Student_Feedback_to_Teacher.csv"
+with open(file_path_teacher, "w") as file:
+    file.write(feedback_output_teacher)
+
+file_path_teacher
